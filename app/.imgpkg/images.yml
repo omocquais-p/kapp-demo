@@ -1,0 +1,11 @@
+---
+apiVersion: imgpkg.carvel.dev/v1alpha1
+images:
+- annotations:
+    kbld.carvel.dev/id: busybox:1.35.0
+    kbld.carvel.dev/origins: |
+      - resolved:
+          tag: 1.35.0
+          url: busybox:1.35.0
+  image: index.docker.io/library/busybox@sha256:c4c67b37cc42396b8a6f6829e3379e86364f642ce6a40604ea4f7c695db0e695
+kind: ImagesLock

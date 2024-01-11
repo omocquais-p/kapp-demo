@@ -1,0 +1,12 @@
+#@data/values
+---
+apps:
+  - name: "strawberries"
+    html: "Strawberries are red"
+    public: true
+  - name: "bananas"
+    html: "Bananas are yellow"
+    public: false
+  - name: "apples"
+    html: "Apples are green"
+    public: false
