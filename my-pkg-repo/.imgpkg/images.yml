@@ -1,0 +1,11 @@
+---
+apiVersion: imgpkg.carvel.dev/v1alpha1
+images:
+- annotations:
+    kbld.carvel.dev/id: omocquais/simple-app-packages:1.0.0
+    kbld.carvel.dev/origins: |
+      - resolved:
+          tag: 1.0.0
+          url: omocquais/simple-app-packages:1.0.0
+  image: index.docker.io/omocquais/simple-app-packages@sha256:673d470010eed5cd8815d6e4421c00a3c1601c1c02fa7e22394a62dfda33319c
+kind: ImagesLock

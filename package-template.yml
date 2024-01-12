@@ -1,0 +1,26 @@
+#@ load("@ytt:data", "data")  # for reading data values (generated via ytt's data-values-schema-inspect mode).
+---
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  name: #@ "simple-app.corp.com." + data.values.version
+spec:
+  refName: simple-app.corp.com
+  version: #@ data.values.version
+  releaseNotes: |
+    Initial release of the simple app package
+  template:
+    spec:
+      fetch:
+        - imgpkgBundle:
+            image: #@ "omocquais/simple-app-packages:" + data.values.version
+      template:
+        - ytt:
+            paths:
+              - "config/"
+        - kbld:
+            paths:
+              - ".imgpkg/images.yml"
+              - "-"
+      deploy:
+        - kapp: {}

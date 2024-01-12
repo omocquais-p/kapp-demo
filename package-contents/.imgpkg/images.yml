@@ -1,0 +1,11 @@
+---
+apiVersion: imgpkg.carvel.dev/v1alpha1
+images:
+- annotations:
+    kbld.carvel.dev/id: omocquais/demo-simple-app:demo-kapp
+    kbld.carvel.dev/origins: |
+      - resolved:
+          tag: demo-kapp
+          url: omocquais/demo-simple-app:demo-kapp
+  image: index.docker.io/omocquais/demo-simple-app@sha256:0e411e67f2ff2724a6ae1cb56c185030d6470ca07ac25175045e25aa9bef1f11
+kind: ImagesLock

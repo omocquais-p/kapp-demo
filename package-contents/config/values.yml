@@ -1,0 +1,6 @@
+#@data/values-schema
+---
+#@schema/desc "Port number for the service."
+svc_port: 8080
+#@schema/desc "Target port for the application."
+app_port: 8080
