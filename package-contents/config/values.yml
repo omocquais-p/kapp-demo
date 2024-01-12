@@ -4,3 +4,5 @@
 svc_port: 8080
 #@schema/desc "Target port for the application."
 app_port: 8080
+#@schema/desc "Custom Welcome Message for the application."
+app_custom_message: "Hello from Package !!!"

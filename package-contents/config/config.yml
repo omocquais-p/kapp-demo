@@ -36,3 +36,6 @@ spec:
         - image: omocquais/demo-simple-app:demo-kapp
           name: demo-kapp
           resources: {}
+          env:
+            - name: MY_CUSTOM_MESSAGE
+              value: #@ data.values.app_custom_message

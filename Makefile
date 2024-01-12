@@ -15,6 +15,7 @@ bundle-package: generate-images-package
 # Prepare Package Repository
 bundle-package-repository: bundle-package
 	{ \
+	rm my-pkg-repo/.imgpkg/images.yml  ;\
 	mkdir -p my-pkg-repo/.imgpkg my-pkg-repo/packages/simple-app.corp.com  ;\
 	ytt -f package-template.yml  -v version="1.0.0" > my-pkg-repo/packages/simple-app.corp.com/1.0.0.yml ;\
 	kbld -f my-pkg-repo/packages/ --imgpkg-lock-output my-pkg-repo/.imgpkg/images.yml  ;\
@@ -25,7 +26,7 @@ package-repository-push: bundle-package-repository
 	imgpkg push -b docker.io/omocquais/simple-app-pkg-repo:1.0.0 -f my-pkg-repo
 
 # Deploy the PackageRepository in the k8s cluster
-deploy-package-repository:
+deploy-package-repository: package-repository-push
 	kapp deploy -a repo -f repo.yml -y
 
 # Inspect PackageRepository and Package resources
@@ -37,7 +38,7 @@ packagerepository-infos:
 	}
 
 # Deploy the package
-deploy-package:
+deploy-package: delete-package deploy-package-repository
 	kapp deploy -a pkg-demo-simple-app -f pkginstall.yml -y
 
 # Check Status
@@ -52,8 +53,12 @@ checks-post-install-package:
 port-forward:
 	kubectl port-forward service/simple-app 8080:8080
 
-delete-package:
+delete-package-repo:
+	kapp delete -a repo -y
+
+delete-package: delete-package-repo
 	kapp delete -a pkg-demo-simple-app -y
+
 
 # Pre-requisites - Kapp Controller installation
 install-kapp:
