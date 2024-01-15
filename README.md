@@ -34,7 +34,7 @@ package-contents
 - Package Repository Bundle
 
 ```shell
-my-pkg-repo
+package-repo
 └── packages
     └── simple-app.corp.com
         ├── 1.0.0.yml
@@ -115,7 +115,7 @@ make install-kapp
     └── values.yml
 ```
 
-- my-pkg-repo: Package Repository definition (CRD)
+- package-repo: Package Repository definition (CRD)
 
 ```shell
 .
@@ -125,16 +125,30 @@ make install-kapp
         └── metadata.yml
 ```
 
-- package-template.yml - Package definition (CRD)
+- package-template/package-template.yml - Package (CRD)
 
 - Reference to bundle + YTT (config)
+
 ```shell
       fetch:
         - imgpkgBundle:
             image: #@ "omocquais/simple-app-packages:" + data.values.version
 ```
 
-- pksginstall.yml - PackageInstall (CRD)
+- k8s-manifests/repo.yml - PackageRepository (CRD)
+
+```shell
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageRepository
+metadata:
+  name: simple-package-repository
+spec:
+  fetch:
+    imgpkgBundle:
+      image: omocquais/simple-app-pkg-repo:1.0.0
+```
+
+- k8s-manifests/pkginstall.yml - PackageInstall (CRD)
 
 ```shell
   packageRef:
