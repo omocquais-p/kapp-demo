@@ -26,7 +26,7 @@ cleanup-package-repository:
 # Prepare Package Repository
 bundle-package-repository: cleanup-package-repository bundle-package
 	{ \
-	ytt -f package-template.yml  -v version="1.0.0" > package-repo/packages/simple-app.corp.com/1.0.0.yml ;\
+	ytt -f package-template/package-template.yml  -v version="1.0.0" > package-repo/packages/simple-app.corp.com/1.0.0.yml ;\
 	kbld -f package-repo/packages/ --imgpkg-lock-output package-repo/.imgpkg/images.yml  ;\
 	}
 
