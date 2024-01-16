@@ -135,7 +135,7 @@ make install-kapp
             image: #@ "omocquais/simple-app-packages:" + data.values.version
 ```
 
-- k8s-manifests/repo.yml - PackageRepository (CRD)
+- packaging/repo.yml - PackageRepository (CRD)
 
 ```shell
 apiVersion: packaging.carvel.dev/v1alpha1
@@ -148,7 +148,7 @@ spec:
       image: omocquais/simple-app-pkg-repo:1.0.0
 ```
 
-- k8s-manifests/pkginstall.yml - PackageInstall (CRD)
+- packaging/packageinstalls.yml - PackageInstall (CRD)
 
 ```shell
   packageRef:

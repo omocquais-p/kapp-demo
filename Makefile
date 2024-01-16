@@ -36,7 +36,7 @@ package-repository-push: bundle-package-repository
 
 # Deploy the PackageRepository in the k8s cluster
 deploy-package-repository: package-repository-push
-	kapp deploy -a repo -f k8s-manifests/repo.yml -y
+	kapp deploy -a repo -f packaging/repo.yml -y
 
 # Inspect PackageRepository and Package resources
 package-repository-infos:
@@ -48,7 +48,7 @@ package-repository-infos:
 
 # Deploy the package
 deploy-package: delete-package deploy-package-repository
-	kapp deploy -a pkg-demo-simple-app -f k8s-manifests/pkginstall.yml -y
+	kapp deploy -a pkg-demo-simple-app -f packaging/packageinstalls.yml -y
 
 # Check Status
 checks-post-install-package:
