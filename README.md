@@ -156,3 +156,24 @@ spec:
     versionSelection:
       constraints: 1.0.0
 ```
+
+## Gitops
+
+- Deploy a package with Gitops
+
+```shell
+kapp deploy -a pkg-gitops-simple-app -f app/ -y
+```
+
+- Folder Structure
+
+```shell
+app
+└── app.yaml
+```
+
+```shell
+gitops
+├── packageinstalls.yml
+└── repo.yml
+```

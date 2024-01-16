@@ -114,3 +114,14 @@ cli-delete-package:
 	{ \
 	kctrl package installed delete -i pkg-demo -y ;\
 	}
+
+
+
+redeploy-app: bundle-package package-repository-push deploy-app
+	echo "new package deployed"
+
+deploy-app:
+	kapp deploy -a pkg-gitops-simple-app -f app/ -y
+
+delete-app:
+	kapp delete -a pkg-gitops-simple-app -y
