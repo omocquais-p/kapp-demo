@@ -13,7 +13,7 @@ spec:
     - git:
         url: https://github.com/omocquais-p/kapp-demo.git
         ref: origin/master
-        subPath: packaging
+        subPath: gitops
   template:
     - ytt: {}
 
