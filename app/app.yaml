@@ -24,6 +24,6 @@ spec:
         paths:
           - gitops/
         valuesFrom:
-          - path: git/values-ci.yml
+          - path: git/values.yml
   deploy:
     - kapp: {}
