@@ -115,8 +115,6 @@ cli-delete-package:
 	kctrl package installed delete -i pkg-demo -y ;\
 	}
 
-
-
 redeploy-app: bundle-package package-repository-push deploy-app
 	echo "new package deployed"
 
