@@ -13,16 +13,16 @@ spec:
         url: https://github.com/omocquais-p/kapp-demo.git
         ref: origin/master
         subPath: gitops
-        path: gitops
+      path: gitops
     - git:
         url: https://github.com/omocquais-p/kapp-demo.git
         ref: origin/master
         subPath: gitops-values/dev
-        path: values
+      path: values
   template:
     - ytt:
         paths:
-          - values/
+          - gitops/
         valuesFrom:
           - path: values/values-ci.yml
   deploy:
