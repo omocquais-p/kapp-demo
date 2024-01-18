@@ -12,7 +12,7 @@ generate-images-package: cleanup-package
 	}
 
 # Push a bundle into a registry
-bundle-package: generate-images-package
+bundle-package-push: generate-images-package
 	{ \
 	imgpkg push --bundle docker.io/omocquais/simple-app-packages:1.0.0 --file package-contents  ;\
 	}
@@ -24,7 +24,7 @@ cleanup-package-repository:
 	}
 
 # Prepare Package Repository
-bundle-package-repository: cleanup-package-repository bundle-package
+bundle-package-repository: cleanup-package-repository bundle-package-push
 	{ \
 	ytt -f package-template/package-template.yml  -v version="1.0.0" > package-repo/packages/simple-app.corp.com/1.0.0.yml ;\
 	kbld -f package-repo/packages/ --imgpkg-lock-output package-repo/.imgpkg/images.yml  ;\
@@ -72,7 +72,7 @@ delete-package: delete-package-repo
 
 # Pre-requisites - Kapp Controller installation
 install-kapp:
-	kapp deploy -a kc -f https://github.com/carvel-dev/kapp-controller/releases/latest/download/release.yml
+	kapp deploy -a kc -f https://github.com/carvel-dev/kapp-controller/releases/latest/download/release.yml --yes
 
 # Pre-requisites - RBAC - required for package
 deploy-rbac:
@@ -115,7 +115,7 @@ cli-delete-package:
 	kctrl package installed delete -i pkg-demo -y ;\
 	}
 
-redeploy-app: bundle-package package-repository-push deploy-app
+redeploy-app: bundle-package-push package-repository-push deploy-app
 	echo "new package deployed"
 
 deploy-app:
@@ -123,3 +123,8 @@ deploy-app:
 
 delete-app:
 	kapp delete -a pkg-gitops-simple-app -y
+
+delete-previous-bundle-repo-registry:
+	{ \
+	crane ls docker.io/omocquais/simple-app-packages | xargs -n1 -t -I{} crane delete docker.io/omocquais/simple-app-packages:{};\
+	}

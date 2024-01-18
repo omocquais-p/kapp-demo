@@ -1,0 +1,30 @@
+# source /Users/omocquais/IdeaProjects/demorunner/demorunner.sh demo.txt
+
+#_ECHO_OFF
+
+# Prep for demo
+export DEMO_DELAY=120
+
+# Clean up from previous runs
+
+# Start demo
+clear
+make delete-app
+make bundle-package-push
+make package-repository-push
+
+#_ECHO_ON
+#_ECHO_# Deploy the application with kapp
+#make install-kapp
+#make deploy-rbac
+make deploy-app
+#_ECHO_OFF
+
+
+#_ECHO_ON
+#_ECHO_# http://localhost:8080/
+kubectl port-forward svc/simple-app 8080:8080
+#_ECHO_OFF
+
+#_ECHO_# Questions?
+
