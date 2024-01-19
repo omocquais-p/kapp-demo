@@ -121,7 +121,7 @@ redeploy-app: bundle-package-push package-repository-push deploy-app
 deploy-app:
 	kapp deploy -a pkg-gitops-simple-app -f app/ -y
 
-delete-app:
+undeploy-app:
 	kapp delete -a pkg-gitops-simple-app -y
 
 delete-previous-bundle-repo-registry:

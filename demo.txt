@@ -15,11 +15,15 @@ make package-repository-push
 
 #_ECHO_ON
 #_ECHO_# Deploy the application with kapp
-#make install-kapp
-#make deploy-rbac
+make install-kapp
+make deploy-rbac
 make deploy-app
 #_ECHO_OFF
 
+#_ECHO_ON
+#_ECHO_# Check image version - kubectl get deploy mydeploy -o yaml | yq .spec.template.spec.containers
+kubectl get deploy mydeploy -o yaml | yq .spec.template.spec.containers
+#_ECHO_OFF
 
 #_ECHO_ON
 #_ECHO_# http://localhost:8080/
