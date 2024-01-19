@@ -7,5 +7,5 @@ images:
       - resolved:
           tag: demo-kapp
           url: omocquais/demo-simple-app:demo-kapp
-  image: index.docker.io/omocquais/demo-simple-app@sha256:5897fe3bf959f7720021455b668384c588ab3607abfec24d945459a829be5cf2
+  image: index.docker.io/omocquais/demo-simple-app@sha256:d1b97e1d8ddccd740104a49fe2e3262b0967cb79205fd4bdfdb198c4093a3238
 kind: ImagesLock

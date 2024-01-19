@@ -124,6 +124,9 @@ deploy-app:
 undeploy-app:
 	kapp delete -a pkg-gitops-simple-app -y
 
+print-deployment-yaml:
+	kubectl get deploy mydeploy -o yaml | yq .spec.template.spec.containers
+
 delete-previous-bundle-repo-registry:
 	{ \
 	crane ls docker.io/omocquais/simple-app-packages | xargs -n1 -t -I{} crane delete docker.io/omocquais/simple-app-packages:{};\

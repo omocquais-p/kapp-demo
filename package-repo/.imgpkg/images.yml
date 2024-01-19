@@ -7,5 +7,5 @@ images:
       - resolved:
           tag: 1.0.0
           url: omocquais/simple-app-packages:1.0.0
-  image: index.docker.io/omocquais/simple-app-packages@sha256:e7950b7e27e4fa521c3d0aaf898e8e67ad4cf5c73bf65ee13c3a674ae3938d3e
+  image: index.docker.io/omocquais/simple-app-packages@sha256:44d98a0b25fb23eb4c57097af229e5213521c8f15c6056aaac0f9f8ab8c63ce3
 kind: ImagesLock
