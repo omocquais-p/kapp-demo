@@ -9,7 +9,7 @@ export DEMO_DELAY=120
 
 # Start demo
 clear
-make delete-app
+make undeploy-app
 make bundle-package-push
 make package-repository-push
 
@@ -26,13 +26,13 @@ kubectl get deploy mydeploy -o yaml | yq .spec.template.spec.containers
 #_ECHO_OFF
 
 #_ECHO_ON
-#_ECHO_# Get Commit Id
-http://localhost:8080/actuator/info
+#_ECHO_# http://localhost:8080/
+kubectl port-forward svc/simple-app 8080:8080
 #_ECHO_OFF
 
 #_ECHO_ON
-#_ECHO_# http://localhost:8080/
-kubectl port-forward svc/simple-app 8080:8080
+#_ECHO_# Get Commit Id
+http://localhost:8080/actuator/info
 #_ECHO_OFF
 
 #_ECHO_# Questions?
